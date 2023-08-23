@@ -356,7 +356,6 @@ namespace CAT_Library.ft_Selenium
                     case "second":
                         try
                         {
-                            Settings.Waiting(TimeSpan.FromSeconds(1));
                             Ft_Firefox.ClickAction(By.XPath(clickBtnUpdate), driver);
                             Settings.Waiting(TimeSpan.FromSeconds(1));
                             WaitingText(By.XPath(confirmationProcess), "Successfully Processed.", TimeSpan.FromMinutes(1), driver);
@@ -380,6 +379,24 @@ namespace CAT_Library.ft_Selenium
             catch (Exception)
             {
                 return 1;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <returns></returns>
+        public static string ft_yieldNumber(IWebDriver driver)
+        {
+            try
+            {
+                string implicitInteresRateNum = "/html/body/table[4]/tbody/tr/td[2]/form/table/tbody/tr[23]/td[3]";
+                return driver.FindElement(By.XPath(implicitInteresRateNum)).Text;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Function 'ft_yieldNumber', failed");
             }
         }
 

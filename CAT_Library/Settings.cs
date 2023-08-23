@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -94,5 +95,56 @@ namespace CAT_Library
         {
             Thread.Sleep(time);
         }
+
+        public static void fileLogMenu(string path)
+        {
+            if (File.Exists(path))
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                Process.Start(path);
+                Cursor.Current = Cursors.Default;
+            }
+            else
+            {
+                MessageBox.Show("The file does not exist in the folder.");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        public static void excelLogMenu(string path)
+        {
+            if (File.Exists(path))
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                Process.Start(path);
+                Cursor.Current = Cursors.Default;
+            }
+            else
+            {
+                MessageBox.Show("The Excel file does not exist in the folder.");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void folderLogMenu(string fileName)
+        {
+            if (Directory.Exists(fileName))
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                Process.Start("explorer.exe", "\"" + fileName + "\"");
+                Cursor.Current = Cursors.Default;
+            }
+            else
+            {
+                MessageBox.Show("The folder you are trying to open does not exist.");
+            }
+        }
+
     }
 }
