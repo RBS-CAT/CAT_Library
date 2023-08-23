@@ -340,6 +340,7 @@ namespace CAT_Library.ft_Selenium
         {
             string confirmationText = "/html/body/table[4]/tbody/tr/td[2]/form[2]/table[1]/tbody/tr[2]/td[2]/div/span";
             string confirmationProcess = "/html/body/table[4]/tbody/tr/td[2]/table[1]/tbody/tr[2]/td[2]/div/div/span[1]";
+            string clickBtnUpdate = "/html/body/table[4]/tbody/tr/td[2]/form[2]/table[11]/tbody/tr/td/a[1]/img";
             string Updatebutton = "Update";
 
             try
@@ -356,7 +357,7 @@ namespace CAT_Library.ft_Selenium
                         try
                         {
                             Settings.Waiting(TimeSpan.FromSeconds(1));
-                            Ft_Firefox.ClickAction(By.CssSelector($"img[title='{Updatebutton}']"), driver);
+                            Ft_Firefox.ClickAction(By.XPath(clickBtnUpdate), driver);
                             Settings.Waiting(TimeSpan.FromSeconds(1));
                             WaitingText(By.XPath(confirmationProcess), "Successfully Processed.", TimeSpan.FromMinutes(1), driver);
                         }

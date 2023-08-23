@@ -29,6 +29,8 @@ namespace CAT_Library.ft_Selenium
         {
             var FirefoxDriver = FirefoxDriverService.CreateDefaultService();
             FirefoxDriver.HideCommandPromptWindow = true;
+            FirefoxProfile profile = new FirefoxProfile();
+            profile.SetPreference("intl.accept_languages", "en-US");
             FirefoxOptions options = new FirefoxOptions();
             string path = @"C:\Users\" + userName + @"\AppData\Local\Mozilla Firefox\firefox.exe";
             bool exist = System.IO.File.Exists(path);
@@ -179,7 +181,6 @@ namespace CAT_Library.ft_Selenium
                 }
             }
         }
-
 
     }
 }

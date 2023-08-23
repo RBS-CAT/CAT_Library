@@ -95,7 +95,7 @@ namespace CAT_Library.ft_Excel
             try
             {
                 Excel.Application excelApp = new Excel.Application();
-                excelApp.Visible = true;
+                excelApp.Visible = false;
                 Excel.Workbook wb = excelApp.Workbooks.Open(excelFile);
                 Excel.Worksheet ws = wb.Sheets[1];
 
