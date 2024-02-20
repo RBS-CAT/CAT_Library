@@ -96,9 +96,9 @@ namespace CAT_Library.ft_Selenium
                             status = ValidateButton(driver);
                             finish = true;
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            throw new Exception("Function Incomplete or New, failed");
+                            throw new Exception(ex.Message.ToString());
                         }
                         break;
                     case "Passed":
@@ -175,7 +175,8 @@ namespace CAT_Library.ft_Selenium
                 string severity = driver.FindElement(By.XPath(line)).Text.ToString();
                 if (severity == "Error")
                 {
-                    string explanation = "/html/body/table[4]/tbody/tr/td[2]/form/table/tbody/tr[4]/td[2]/table/tbody/tr/td/table/tbody/tr[" + count + "]/td[4]";
+                    string lineExplanation = "/html/body/table[4]/tbody/tr/td[2]/form/table/tbody/tr[4]/td[2]/table/tbody/tr/td/table/tbody/tr[" + count + "]/td[4]";
+                    string explanation = driver.FindElement(By.XPath(lineExplanation)).Text.ToString();
                     Ft_Firefox.ClickAction(By.CssSelector($"img[title='{backToBooking}']"), driver);
                     throw new Exception(driver.FindElement(By.XPath(explanation)).Text);
                 }
@@ -201,7 +202,7 @@ namespace CAT_Library.ft_Selenium
             {
                 case 0: //Less than 11
                     Ft_Firefox.ClickAction(By.CssSelector($"img[title='{streamsButton}']"), driver);
-                    Ft_Firefox.WaitingText(By.XPath(statusContract), " Complete", TimeSpan.FromMinutes(3), driver);
+                    Ft_Firefox.WaitingTextBetween(By.XPath(statusContract), " Complete", " Approved", TimeSpan.FromMinutes(3), driver);
                     break;
                 case 1: //Greater than 11
                     SubmitButtonToApproved(driver);

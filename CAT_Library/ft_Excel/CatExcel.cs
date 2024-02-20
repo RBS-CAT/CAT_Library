@@ -75,9 +75,8 @@ namespace CAT_Library.ft_Excel
         /// <param name="width">Column dimension (num).</param>
         public static void SetColumn(Excel.Worksheet ws, int row, int column, string title, Excel.XlVAlign vAlign, Excel.XlHAlign hAlign, int width)
         {
-            LetterColumns lt = new LetterColumns();
             ws.Cells[row, column].Value = title;
-            string letter = lt.InLetter(column.ToString());
+            string letter = LetterColumns.InLetter(column.ToString());
             ws.Columns[letter].ColumnWidth = width;
             ws.Columns[letter].VerticalAlignment = vAlign;
             ws.Columns[letter].HorizontalAlignment = hAlign;

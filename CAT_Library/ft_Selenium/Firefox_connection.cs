@@ -38,6 +38,10 @@ namespace CAT_Library.ft_Selenium
             {
                 path = @"C:\Program Files\Mozilla Firefox\firefox.exe";
             }
+            else
+            {
+                path = @"C:\Users\" + userName + @"\AppData\Local\Mozilla Firefox\firefox.exe";
+            }
             options.BrowserExecutableLocation = path;
             options.AddArgument("--disable-infobars");
             //options.AddArguments("--headless");

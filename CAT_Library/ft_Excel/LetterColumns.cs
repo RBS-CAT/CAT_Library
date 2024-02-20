@@ -9,14 +9,14 @@ namespace CAT_Library.ft_Excel
     /// <summary>
     /// 
     /// </summary>
-    public class LetterColumns
+    public static class LetterColumns
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        public string InLetter(string num)
+        public static string InLetter(string num)
         {
             string res, dec = "";
             Int64 entero;
@@ -42,7 +42,7 @@ namespace CAT_Library.ft_Excel
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public string ToText(double value)
+        public static string ToText(double value)
         {
             string Num2Text = "";
             value = Math.Truncate(value);

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -48,6 +49,20 @@ namespace CAT_Library
                 Point dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
                 form.Location = Point.Add(dragFormPoint, new Size(dif));
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public static void NewSizePosition(Control control, int width, int height, int x, int y)
+        {
+            control.Size = new Size(width, height);
+            control.Location = new Point(x, y);
         }
 
         /// <summary>
@@ -96,6 +111,10 @@ namespace CAT_Library
             Thread.Sleep(time);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
         public static void fileLogMenu(string path)
         {
             if (File.Exists(path))
@@ -146,5 +165,19 @@ namespace CAT_Library
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string ExtractText(string text)
+        {
+            Match match = Regex.Match(text, "\"(.*?)\"");
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+            return text;
+        }
     }
 }

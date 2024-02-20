@@ -118,8 +118,8 @@ namespace CAT_Library.ft_Selenium
         /// </summary>
         /// <param name="elementLocator">Element to be searched for.</param>
         /// <param name="value">Text to search for and wait until found.</param>
-        /// <param name="time">Wait time. 
-        ///                    It can be in milliseconds, seconds, minutes, hours or days.</param>
+        /// <param name="time">Wait time.<br>
+        /// It can be in milliseconds, seconds, minutes, hours or days.</br></param>
         /// <param name="driver">Geckodriver browser driver.</param>
         /// <returns>Returns True if the specified text has been found. False if there has been an error.</returns>
         public static bool WaitingText(By elementLocator, string value, TimeSpan time, IWebDriver driver)
@@ -129,6 +129,34 @@ namespace CAT_Library.ft_Selenium
                 WebDriverWait wait = new WebDriverWait(driver, time);
                 string status = driver.FindElement(elementLocator).Text;
                 wait.Until(ExpectedConditions.TextToBePresentInElementLocated((elementLocator), value));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Function that will wait for two specific texts at the specified location.
+        /// </summary>
+        /// <param name="elementLocator">Element to be searched for.</param>
+        /// <param name="value1">Text to search for and wait until found.</param>
+        /// <param name="value2">Text to search for and wait until found.</param>
+        /// <param name="time">Wait time.<br> 
+        /// It can be in milliseconds, seconds, minutes, hours or days.</br></param>
+        /// <param name="driver">Geckodriver browser driver.</param>
+        /// <returns></returns>
+        public static bool WaitingTextBetween(By elementLocator, string value1, string value2, TimeSpan time, IWebDriver driver)
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, time);
+                var element = driver.FindElement(elementLocator);
+                wait.Until(d => {
+                    string currentText = element.Text;
+                    return currentText.CompareTo(value1) >= 0 && currentText.CompareTo(value2) <= 0;
+                });
                 return true;
             }
             catch (Exception)
@@ -223,7 +251,7 @@ namespace CAT_Library.ft_Selenium
         }
 
         /// <summary>
-        /// Function to check the status of the contract.
+        /// Function to check the status of the contract before to open the contract.
         /// </summary>
         /// <param name="driver">Geckodriver browser driver.</param>
         /// <returns>Will return 0 if the state of the contract is not activated, otherwise it will return 1.</returns>
